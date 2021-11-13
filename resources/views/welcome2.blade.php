@@ -184,9 +184,9 @@
 
 @push('scripts')
     <!-- Resources -->
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="{{ asset('assets/offline/core.js') }}"></script>
+    <script src="{{ asset('assets/offline/charts.js') }}"></script>
+    <script src="{{ asset('assets/offline/animated.js') }}"></script>
 
     <!-- Chart code -->
     <script>
@@ -222,9 +222,9 @@
 
 
   <!-- Resources -->
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="{{ asset('assets/offline/cdn/core.js') }}"></script>
+  <script src="{{ asset('assets/offline/cdn/charts.js') }}"></script>
+  <script src="{{ asset('assets/offline/cdn/animated.js') }}"></script>
 
 <!-- Chart code -->
 <script>
