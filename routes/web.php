@@ -3,6 +3,7 @@
 use App\Http\Controllers\CariKoleksiController;
 use App\Http\Controllers\ManajemenKoleksiController;
 use App\Http\Controllers\OperatorDashboardController;
+use App\Http\Controllers\SatuAtapController;
 use App\Models\Absensi;
 use App\Models\Subyek;
 use Illuminate\Support\Facades\Auth;
@@ -56,3 +57,5 @@ Route::group(['prefix' => 'operator/manajemen_koleksi'], function () {
     Route::get('/cari_bulan',[ManajemenKoleksiController::class, 'cariBulan'])->name('admin.koleksi.cari_bulan');
     Route::delete('/delete',[ManajemenKoleksiController::class, 'delete'])->name('operator.koleksi.delete');
 });
+
+Route::get('/satuatap',[SatuAtapController::class, 'index'])->name('satu_atap');
