@@ -29,7 +29,7 @@
               <div class="col-md-6 mt-6">
                 <div class="form-group">
                   <label for="" class="form-label">Ketik Judul Koleksi :</label>
-                  <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror">
+                  <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" autocomplete="off">
                   <div>
                       @if ($errors->has('judul'))
                           <small class="form-text text-danger">{{ $errors->first('judul') }}</small>
