@@ -12,6 +12,8 @@ class CariKoleksiController extends Controller
     }
 
     public function koleksiCari(Request $request){
+        return $request->all();
+
         $messages = [
             'required' => ':attribute harus diisi',
         ];
@@ -23,7 +25,6 @@ class CariKoleksiController extends Controller
             'cari_berdasarkan'    =>  'required',
             'judul'    =>  'required',
         ],$messages,$attributes);
-    
         if ($request->cari_berdasarkan == "pengarang") {
             $data = DB::table('pkoleksi')->where('PENULASLI', 'like','%'.$request->judul . '%')
                     ->select('JUD','PENULASLI','PENERBIT','KOTA','EDISI','TOTKOLEK','TOTKOLEK','POSIRAK','LANTAI','dokumen')->get();
@@ -98,6 +99,15 @@ class CariKoleksiController extends Controller
             }
             else{
                 return redirect()->route('cari_koleksi2')->with(['error'   =>  'Mohon Maaf Buku Tidak Ditemukan']);
+            }
+        } elseif ($request->cari_berdasarkan == "judul") {
+            $data = DB::table('pkoleksi')->where('JUD', 'like','%'.$request->judul . '%')
+                    ->select('JUD','PENULASLI','PENERBIT','KOTA','EDISI','TOTKOLEK','TOTKOLEK','POSIRAK','LANTAI','dokumen')->get();
+            if (count($data)>0) {
+                return view('cari_koleksi2',compact('data'))->with(['success'    =>  'Alhamdulillah, buku berhasil ditemukan ']);
+            }
+            else{
+                return redirect()->route('cari_koleksi')->with(['error'   =>  'Mohon Maaf Buku Tidak Ditemukan']);
             }
         } elseif ($request->cari_berdasarkan == "penerbit") {
             $data = DB::table('pkoleksi')->where('PENERBIT', 'like','%'.$request->judul . '%')

@@ -230,7 +230,7 @@
                                 <input type="text" name="subyek" class="form-control">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">PKDKLS</label>
+                                <label for="exampleInputEmail1">Nomor Kelas</label>
                                 <input type="text" name="pkdkls" class="form-control">
                             </div>
                     

@@ -6,6 +6,20 @@
     </div>
     <div class="box-body">
       <div class="row">
+        <div class="col-md-12" style="margin-bottom: 10px;">
+          @if ($message = Session::get('error'))
+          <div class="alert alert-danger alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button> 
+              <strong>Gagal :</strong>{{ $message }}
+          </div>
+          @elseif ($message2 = Session::get('success'))
+          <div class="alert alert-success alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button> 
+              <strong>Gagal :</strong>{{ $message2 }}
+          </div>
+          @endif
+        </div>
+
         <form action="{{ route('koleksi.cari2') }}" method="POST">
             {{ csrf_field() }} {{ method_field("POST") }}
             <div class="col-md-6 mt-6">
@@ -13,6 +27,7 @@
                   <label for="" class="form-label">Cari Berdasarkan :</label>
                   <select name="cari_berdasarkan" class="form-control" >
                     <option disabled selected="selected">-- Filter Kategori --</option>
+                    <option value="judul">Judul</option>        
                     <option value="pengarang">Pengarang</option>
                     <option value="penerbit">Penerbit</option>
                     <option value="tahun">Tahun Terbit</option>
@@ -43,20 +58,6 @@
           </form>
           <hr>
           <div class="row"></div>
-            <div class="col-md-12">
-              @if ($message = Session::get('error'))
-              <div class="alert alert-danger alert-block">
-                  <button type="button" class="close" data-dismiss="alert">×</button> 
-                  <strong>Gagal :</strong>{{ $message }}
-              </div>
-              @elseif ($message2 = Session::get('success'))
-              <div class="alert alert-success alert-block">
-                  <button type="button" class="close" data-dismiss="alert">×</button> 
-                  <strong>Gagal :</strong>{{ $message2 }}
-              </div>
-              @endif
-            </div>
-
             @if (isset($_POST['judul']))
               <div class="col-md-12" style="margin-top: 10px !important;">
                 <div class="box box-info">
