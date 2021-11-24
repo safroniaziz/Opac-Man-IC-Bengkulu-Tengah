@@ -78,15 +78,19 @@
                                     <td>{{ $koleksi->POSIRAK }}</td>
                                     <td>
                                         @if ($koleksi->dokumen == null || $koleksi->dokumen == "")
-                                            <a style="color: red">-</a>
+                                            <a style="color: red">tidak ada koleksi</a>
                                             @else
-                                            <a class="btn btn-primary btn-sm" href="{{ asset('upload_file/'.$koleksi->dokumen) }}" download="{{ $koleksi->dokumen }}"><i class="fa fa-download"></i></a>
+                                            <a class="btn btn-primary btn-sm" href="{{ asset('upload_file/'.$koleksi->dokumen) }}" download="{{ $koleksi->dokumen }}"><i class="fa fa-download"></i>&nbsp; Download Dokumen</a>
                                         @endif
 
                                     </td>
                                     <td>
-                                        <a href="{{ route('operator.koleksi.edit',[$koleksi->KDKOLEK]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;Ubah</a></td>
+                                        {{-- <a href="{{ route('operator.koleksi.edit',[$koleksi->KDKOLEK]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;Ubah</a></td> --}}
                                     {{-- <a onclick="hapusBuku({{ $koleksi->id }})" class="btn btn-danger btn-sm" style="color:white;cursor:pointer;"><i class="fa fa-trash"></i></a> --}}
+                                    <form action="{{ route('operator.koleksi.delete',[$koleksi->KDKOLEK]) }}" method="POST">
+                                        {{ csrf_field() }} {{ method_field("DELETE") }}
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
+                                    </form>
                                     </tr>
                                 @endforeach
                             </tbody>

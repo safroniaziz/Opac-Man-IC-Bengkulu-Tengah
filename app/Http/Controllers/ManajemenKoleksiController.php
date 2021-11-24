@@ -33,77 +33,19 @@ class ManajemenKoleksiController extends Controller
         ];
         $attributes = [
             'judul'               =>  'Judul',
-            'subyek'               =>  'subyek',
-            'jumlah_eksemplar'    =>  'jumlah eksemplar',
+            'subyek'               =>  'Subyek',
             'penulis'             =>  'penulis',
-            'ketersediaan'        =>  'ketersediaan',
             'penerbit'      =>  'penerbit',
-            'posisi_rak'    =>  'posisi rak',
-            'kota'          =>  'kota',
-            'lantai'        =>  'lantai',
-            'edisi'         =>  'Edisi',
-            'judul_asli'    =>  'judul_asli',
             'isbn'          =>  'isbn',
-            'bahasa'        =>  'bahasa',
-            'terjemahan'  =>  'terjemahan',
-            'penulis1'    =>  'penulis1',
-            'penulis2'    =>  'penulis2',
-            'penulis3'    =>  'penulis3',
-            'penulis4'    =>  'penulis4',
-            'editor'       =>  'editor',
             'tahun'        =>  'tahun',
-            'seri'         =>  'seri',
-            'tinggi'       =>  'tinggi',
-            'ilustrasi'    =>  'ilustrasi',
-            'jumlah_halaman'   =>  'jumlah_halaman',
-            'jumlah_indeks'    =>  'jumlah_indeks',
-            'jumlah_jilid'     =>  'jumlah_jilid',
-            'kategori'         =>  'kategori',
-            'sisa_koleksi'     =>  'sisa_koleksi',
-            'badan_korporasi'=>  'badan_korporasi',
-            'catatan'        =>  'catatan',
-            'resume'         =>  'resume',
-            'kode_user'      =>  'kode_user',
-            'sub_judul'      =>  'sub_judul',
-
-            'digitpens'   =>  'digitpens',
-            'digitjud'    =>  'digitjud',
-            'bib'         =>  'bib',
-            'asalbuku'        =>  'asalbuku',
-            'jumlah_pinjam'   =>  'jumlah_pinjam',
-            'pkdkls'   =>  'pkdkls',
         ];
         $this->validate($request, [
             'judul'               =>  'required',
-            'jumlah_eksemplar'    =>  'required',
             'penulis'             =>  'required',
-            'ketersediaan'        =>  'required',
             'penerbit'      =>  'required',
-            'posisi_rak'    =>  'required',
-            'kota'          =>  'required',
-            'lantai'        =>  'required',
-            'edisi'         =>  'required',
-            'judul_asli'    =>  'required',
-            'isbn'          =>  'required',
-         
-            'editor'      =>  'required',
-      
-    
             'tahun'         =>  'required',
-            'seri'          =>  'required',
-           
-           
-            'jumlah_halaman'    =>  'required|numeric',
-            'jumlah_indeks'     =>  'required|numeric',
-            'jumlah_jilid'      =>  'required|numeric',
-            'kategori'          =>  'required',
-            'sisa_koleksi'      =>  'required|numeric',
-            'jumlah_pinjam'    =>  'required|numeric',
-            'kode_user'       =>  'required',
-            'digitpens'    =>  'required',
-            'digitjud'     =>  'required',
-            'bib'          =>  'required',
-      
+            'subyek'         =>  'required',
+            'isbn'         =>  'required',
         ],$messages,$attributes);
 
         $model['dokumen'] = null;
@@ -258,9 +200,9 @@ class ManajemenKoleksiController extends Controller
         return redirect()->route('operator.manajemen_anggota')->with(['success'   =>  'Data Anggota Berhasil Diubah !!']);
     }
 
-    public function delete(Request $request){
-        Anggota::where('id',$request->id)->delete();
-        return redirect()->route('operator.manajemen_anggota')->with(['success'   =>  'Data Anggota Berhasil Dihapus !!']);
+    public function delete($KDKOLEK){
+        Subyek::where('KDKOLEK',$KDKOLEK)->delete();
+        return redirect()->route('operator.koleksi')->with(['success'   =>  'Data Koleksi Berhasil Dihapus !!']);
     }
 
     // public function updatePassword(Request $request){

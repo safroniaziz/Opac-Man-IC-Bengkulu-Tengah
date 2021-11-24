@@ -26,18 +26,17 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="row">
-                        @if ($message = Session::get('error'))
-                            <div class="alert alert-danger alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong>Gagal :</strong> {{ $message }}
-                            </div>
-                        @endif
                         <form action="{{ route('operator.koleksi.post') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }} {{ method_field('POST') }}
             
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Judul</label>
-                                <input type="text" name="judul" class="form-control">
+                                <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('judul'))
+                                        <small class="form-text text-danger">{{ $errors->first('judul') }}</small>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Jumlah Eksemplar</label>
@@ -45,7 +44,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Penulis</label>
-                                <input type="text" name="penulis" class="form-control">
+                                <input type="text" name="penulis" class="form-control @error('penulis') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('penulis'))
+                                        <small class="form-text text-danger">{{ $errors->first('penulis') }}</small>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Ketersediaan</label>
@@ -53,7 +57,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Penerbit</label>
-                                <input type="text" name="penerbit" class="form-control">
+                                <input type="text" name="penerbit" class="form-control @error('penerbit') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('penerbit'))
+                                        <small class="form-text text-danger">{{ $errors->first('penerbit') }}</small>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Posisi Rak</label>
@@ -78,11 +87,15 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">ISBN</label>
-                                <input type="text" name="isbn" class="form-control">
+                                <input type="text" name="isbn" class="form-control @error('isbn') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('isbn'))
+                                        <small class="form-text text-danger">{{ $errors->first('isbn') }}</small>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Bahasa :</label>
-                                <input type="text" name="bahasa" class="form-control">
                                 <select name="bahasa" class="form-control  @error('bahasa') is-invalid @enderror">
                                     
                                     <option value="" selected disabled>-- pilih bahasa --</option>
@@ -123,7 +136,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Tahun</label>
-                                <input type="text" name="tahun" class="form-control">
+                                <input type="text" name="tahun" class="form-control @error('tahun') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('tahun'))
+                                        <small class="form-text text-danger">{{ $errors->first('tahun') }}</small>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Seri</label>
@@ -147,9 +165,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Kategori Buku :</label>
-                                <input type="text" name="kategori" class="form-control">
                                 <select name="kategori" class="form-control  @error('kategori') is-invalid @enderror">
-                                    
                                     <option value="" selected disabled>-- pilih kategori --</option>
                                     <option {{ old('kategori') == "buku" ? 'selected' : '' }} value="buku">buku</option>
                                     <option {{ old('kategori') == "CD" ? 'selected' : '' }} value="CD">CD</option>
@@ -227,7 +243,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">subyek</label>
-                                <input type="text" name="subyek" class="form-control">
+                                <input type="text" name="subyek" class="form-control @error('subyek') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('subyek'))
+                                        <small class="form-text text-danger">{{ $errors->first('subyek') }}</small>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Nomor Kelas</label>

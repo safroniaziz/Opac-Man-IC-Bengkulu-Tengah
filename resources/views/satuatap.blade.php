@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Opac Man IC | @yield('title')</title>
+  <title>Man IC Benteng | Aplikasi Satu Pintu</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -37,7 +37,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="{{ route('satuatap') }}" class="navbar-brand"><b>MAN IC</b>&nbsp;Benteng</a>
+          <a href="{{ route('satu_atap') }}" class="navbar-brand"><b>MAN IC</b>&nbsp;Benteng</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -71,7 +71,7 @@
             <h4>Selamat Datang</h4>
         
             <p>
-              Aplikasi Satu Atap Madrasah Aliyah Insan Cendikia <b>(MAN IC)</b> Bengkulu Tengah, Kota Bengkulu 
+              Aplikasi Satu Pintu Madrasah Aliyah Insan Cendikia <b>(MAN IC)</b> Bengkulu Tengah, Kota Bengkulu 
             </p>
           </div>
         <div class="box box-info">
@@ -146,7 +146,7 @@
                             <a href="">
                                 <div class="col-md-12 col-sm-6 col-xs-12">
                                     <div class="info-box bg-blue">
-                                      <span class="info-box-icon"><i class="fa fa-money"></i></span>
+                                      <span class="info-box-icon"><i class="fa fa-list"></i></span>
                           
                                       <div class="info-box-content">
                                         <span class="info-box-text"></span><br>
@@ -165,6 +165,24 @@
 
                     <div class="col-md-6">
                         <div class="row">
+			<a href="">
+                                <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-aqua">
+                                      <span class="info-box-icon"><i class="fa fa-list-alt"></i></span>
+                          
+                                      <div class="info-box-content">
+                                        <span class="info-box-text"></span><br>
+                                        <span class="info-box-number">Aduan Masyarakat</span>
+                                            <span style="font-style: italic" class="progress-description">
+                                              Layanan Aduan Masyarakat
+                                            </span>
+                                      </div>
+                                      <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                            </a>
+
                             <a href="">
                                 <div class="col-md-12 col-sm-6 col-xs-12">
                                     <div class="info-box bg-yellow">
@@ -204,7 +222,7 @@
                             <a href="">
                                 <div class="col-md-12 col-sm-6 col-xs-12">
                                     <div class="info-box bg-green">
-                                      <span class="info-box-icon"><i class="fa fa-money"></i></span>
+                                      <span class="info-box-icon"><i class="fa fa-envelope"></i></span>
                           
                                       <div class="info-box-content">
                                         <span class="info-box-text"></span><br>
@@ -222,7 +240,7 @@
                             <a href="">
                                 <div class="col-md-12 col-sm-6 col-xs-12">
                                     <div class="info-box bg-yellow">
-                                      <span class="info-box-icon"><i class="fa fa-money"></i></span>
+                                      <span class="info-box-icon"><i class="fa fa-graduation-cap "></i></span>
                           
                                       <div class="info-box-content">
                                         <span class="info-box-text"></span><br>
@@ -240,7 +258,7 @@
                             <a href="">
                                 <div class="col-md-12 col-sm-6 col-xs-12">
                                     <div class="info-box bg-blue">
-                                      <span class="info-box-icon"><i class="fa fa-money"></i></span>
+                                      <span class="info-box-icon"><i class="fa fa-users"></i></span>
                           
                                       <div class="info-box-content">
                                         <span class="info-box-text"></span><br>
@@ -257,26 +275,8 @@
 
                             <a href="">
                                 <div class="col-md-12 col-sm-6 col-xs-12">
-                                    <div class="info-box bg-green">
-                                      <span class="info-box-icon"><i class="fa fa-money"></i></span>
-                          
-                                      <div class="info-box-content">
-                                        <span class="info-box-text"></span><br>
-                                        <span class="info-box-number">Absensi</span>
-                                            <span style="font-style: italic" class="progress-description">
-                                              Layanan Absensi Siswa
-                                            </span>
-                                      </div>
-                                      <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                </div>
-                            </a>
-
-                            <a href="">
-                                <div class="col-md-12 col-sm-6 col-xs-12">
                                     <div class="info-box bg-aqua">
-                                      <span class="info-box-icon"><i class="fa fa-money"></i></span>
+                                      <span class="info-box-icon"><i class="fa fa-university "></i></span>
                           
                                       <div class="info-box-content">
                                         <span class="info-box-text"></span><br>
