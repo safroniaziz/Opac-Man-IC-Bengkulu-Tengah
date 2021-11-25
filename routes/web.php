@@ -52,7 +52,7 @@ Route::group(['prefix' => 'operator/manajemen_koleksi'], function () {
     Route::get('/',[ManajemenKoleksiController::class, 'index'])->name('operator.koleksi');
     Route::get('/tambah',[ManajemenKoleksiController::class, 'add'])->name('operator.koleksi.add');
     Route::post('/tambah',[ManajemenKoleksiController::class, 'post'])->name('operator.koleksi.post');
-    Route::get('/edit',[ManajemenKoleksiController::class, 'edit'])->name('operator.koleksi.edit');
+    Route::get('/edit/{KDKOLEK}',[ManajemenKoleksiController::class, 'edit'])->name('operator.koleksi.edit');
     Route::patch('/update',[ManajemenKoleksiController::class, 'update'])->name('operator.koleksi.update');
     Route::get('/cari_bulan',[ManajemenKoleksiController::class, 'cariBulan'])->name('admin.koleksi.cari_bulan');
     Route::delete('/delete',[ManajemenKoleksiController::class, 'delete'])->name('operator.koleksi.delete');
