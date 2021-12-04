@@ -17,6 +17,9 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{ asset('assets/lte/dist/css/skins/_all-skins.min.css') }}">
+  <style>
+    .preloader {    position: fixed;    top: 0;    left: 0;    right: 0;    bottom: 0;    background-color: #ffffff;    z-index: 99999;    height: 100%;    width: 100%;    overflow: hidden !important;}.do-loader{    width: 200px;    height: 200px;    position: absolute;    left: 50%;    top: 50%;    margin: 0 auto;    -webkit-border-radius: 100%;       -moz-border-radius: 100%;         -o-border-radius: 100%;            border-radius: 100%;    background-image: url({{ asset('assets/images/logo_2.png') }});    background-size: 80% !important;    background-repeat: no-repeat;    background-position: center;    -webkit-background-size: cover;            background-size: cover;    -webkit-transform: translate(-50%,-50%);       -moz-transform: translate(-50%,-50%);        -ms-transform: translate(-50%,-50%);         -o-transform: translate(-50%,-50%);            transform: translate(-50%,-50%);}.do-loader:before {    content: "";    display: block;    position: absolute;    left: -6px;    top: -6px;    height: calc(100% + 12px);    width: calc(100% + 12px);    border-top: 1px solid #07A8D8;    border-left: 1px solid transparent;    border-bottom: 1px solid transparent;    border-right: 1px solid transparent;    border-radius: 100%;    -webkit-animation: spinning 0.750s infinite linear;       -moz-animation: spinning 0.750s infinite linear;         -o-animation: spinning 0.750s infinite linear;            animation: spinning 0.750s infinite linear;}@-webkit-keyframes spinning {   from {-webkit-transform: rotate(0deg);}   to {-webkit-transform: rotate(359deg);}}@-moz-keyframes spinning {   from {-moz-transform: rotate(0deg);}   to {-moz-transform: rotate(359deg);}}@-o-keyframes spinning {   from {-o-transform: rotate(0deg);}   to {-o-transform: rotate(359deg);}}@keyframes spinning {   from {transform: rotate(0deg);}   to {transform: rotate(359deg);}}
+  </style>
   @stack('styles')
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -31,6 +34,9 @@
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
+  <div class="preloader">
+    <div class="do-loader"></div>
+</div>
 <div class="wrapper">
 
   <header class="main-header">
@@ -86,7 +92,7 @@
       <section class="content">
         <div class="callout callout-info">
           <table border="0" style="width: 75%; margin: 0 auto;">
-              <tr>
+              {{-- <tr>
                   <td rowspan="4" style="width: 10%">
                       <img src="{{ asset('assets/images/manic.png') }}" style="width: 120px" alt="">
                   </td>
@@ -95,8 +101,27 @@
                           PERPUSTAKAAN MAN INSAN CENDIKIA BENGKULU TENGAH
                       </h3>
                   </td>
-              </tr>
-              <tr>
+              </tr> --}}
+
+              <div class="row">
+                <div class="col-md-10" style="">
+                  <div class="col-md-2" style="text-align:center">
+                    <img src="{{ asset('assets/images/manic.png') }}" style="width: 120px" alt="">
+                  </div>
+                  <div class="col-md-10" style="text-align: center">
+                    <h3 style="text-align: center; font-weight:bold">
+                        PERPUSTAKAAN MAN INSAN CENDIKIA BENGKULU TENGAH
+                        <br>
+                        OPAC
+                        <br>
+                        <h4 style="font-style: italic; text-align:center">
+                          Online Public Access Catalog
+                        </h4>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              {{-- <tr>
                   <td colspan="4">
                       <h4 style="text-align: center; font-weight:bold; font-size:25px;">
                           OPAC
@@ -109,7 +134,7 @@
                         Online Public Access Catalog
                       </h4>
                   </td>
-              </tr>
+              </tr> --}}
           </table>
         </div>
         @yield('content')
@@ -144,6 +169,24 @@
 <script src="{{ asset('assets/lte/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('assets/lte/dist/js/demo.js') }}"></script>
+<script>
+  // jQuery(window).load(function() {
+  //       // will first fade out the loading animation
+  //       jQuery(".status").fadeOut();
+  //       // will fade out the whole DIV that covers the website.
+  //       jQuery(".preloader").delay(0).fadeOut("slow");
+
+  //     });
+
+      $(window).on('load', function(){
+        // will first fade out the loading animation
+        jQuery(".status").fadeOut();
+        // will fade out the whole DIV that covers the website.
+        jQuery(".preloader").delay(0).fadeOut("slow");
+
+      });
+
+</script>
 @stack('scripts')
 </body>
 </html>

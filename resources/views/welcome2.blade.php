@@ -185,7 +185,7 @@
 @push('scripts')
     <!-- Resources -->
     <script src="{{ asset('assets/offline/core.js') }}"></script>
-    <script src="{{ asset('assets/offline/charts.js') }}"></script>
+    <script src="{{ asset('assets/offline/chart.js') }}"></script>
     <script src="{{ asset('assets/offline/animated.js') }}"></script>
 
     <!-- Chart code -->
