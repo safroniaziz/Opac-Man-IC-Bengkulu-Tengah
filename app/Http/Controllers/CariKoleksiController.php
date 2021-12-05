@@ -107,7 +107,7 @@ class CariKoleksiController extends Controller
                 return view('cari_koleksi2',compact('data'))->with(['success'    =>  'Alhamdulillah, buku berhasil ditemukan ']);
             }
             else{
-                return redirect()->route('cari_koleksi')->with(['error'   =>  'Mohon Maaf Buku Tidak Ditemukan']);
+                return redirect()->route('cari_koleksi2')->with(['error'   =>  'Mohon Maaf Buku Tidak Ditemukan']);
             }
         } elseif ($request->cari_berdasarkan == "penerbit") {
             $data = DB::table('pkoleksi')->where('PENERBIT', 'like','%'.$request->judul . '%')

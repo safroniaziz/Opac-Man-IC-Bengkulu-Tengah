@@ -19,8 +19,8 @@
     <div class="callout callout-info ">
         <h4>SELAMAT DATANG!</h4>
         <p>
-            Sistem Informasi Koperasi adalah aplikasi yang digunakan untuk memanajemen data investor pada Koperasi Amanah,
-            anda dapat menggunakan menu-menu yang sudah disediakan pada aplikasi.
+            <b>Online Public Access Catalog (OPAC)</b> adalah aplikasi perkembangan dari ilmu perpustakaan
+      dengan menerapkan pencarian koleksi buku sederhana hanya dengan satu kriteria pencarian saja 
             <br>
             <b><i>Catatan:</i></b> Untuk keamanan, jangan lupa keluar setelah menggunakan aplikasi
         </p>

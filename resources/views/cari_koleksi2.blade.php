@@ -25,7 +25,7 @@
             <div class="col-md-6 mt-6">
                 <div class="form-group">
                   <label for="" class="form-label">Cari Berdasarkan :</label>
-                  <select name="cari_berdasarkan" class="form-control" >
+                  <select name="cari_berdasarkan" id="cari_berdasarkan" class="form-control" >
                     <option disabled selected="selected">-- Filter Kategori --</option>
                     <option value="judul">Judul</option>        
                     <option value="pengarang">Pengarang</option>
@@ -43,7 +43,7 @@
               </div>
               <div class="col-md-6 mt-6">
                 <div class="form-group">
-                  <label for="" class="form-label">Ketik Judul Koleksi :</label>
+                  <label for="" class="form-label" id="label_cari">Harap Pilih Kategori Terlebih Dahulu:</label>
                   <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" autocomplete="off">
                   <div>
                       @if ($errors->has('judul'))
@@ -140,3 +140,28 @@
     <!-- /.box-body -->
   </div>  
 @endsection
+
+@push('scripts')
+<script>
+  $(document).ready(function(){
+    $('#cari_berdasarkan').change(function(){
+      var cari = $('#cari_berdasarkan').val();
+      if (cari == "pengarang") {
+        $('#label_cari').text("Harap Ketik Nama Pengarang :");
+      } else if (cari == "judul") {
+        $('#label_cari').text("Harap Ketik Judul :");
+      } else if (cari == "penerbit") {
+        $('#label_cari').text("Harap Ketik Nama Penerbit :");
+      } else if (cari == "tahun") {
+        $('#label_cari').text("Harap Ketik Tahun Terbit :");
+      } else if (cari == "subyek") {
+        $('#label_cari').text("Harap Ketik Subyek :");
+      } else if (cari == "isbn") {
+        $('#label_cari').text("Harap Ketik ISBN :");
+      } else{
+        $('#label_cari').text("Harap Pilih Kategori Terlebih Dahulu: :");
+      }
+    });
+  });
+</script>
+@endpush
