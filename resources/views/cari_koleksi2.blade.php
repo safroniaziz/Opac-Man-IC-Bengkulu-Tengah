@@ -73,60 +73,62 @@
                         $no=1;
                     @endphp
                     @foreach ($data as $data)
-                    <table class="table table-bordered table-hover">
-                      <tr style="background-color: #f0f0f0f0 !important">
-                        <th style="width: 15%;">Nomor</th>
-                        <th colspan="3">{{ $no++ }}</th>
-
-                        
-                      </tr>
-                      <tr>
-                        <th style="width: 15%">Judul</th>
-                        <td>{{ $data->JUD }}</td>
-
-                        <th style="width: 15%">Jumlah Eksemplar</th>
-                        <td>{{ $data->TOTKOLEK }}</td>
-                      </tr>
-                      <tr>
-                        <th style="width: 15%">Penulis</th>
-                        <td>{{ $data->PENULASLI }}</td>
-                        <th style="width: 15%">Ketersediaan</th>
-                        <td>{{ $data->TOTKOLEK }}</td>
-                      </tr>
-                      <tr>
-                        <th style="width: 15%">Penerbit</th>
-                        <td>{{ $data->PENERBIT }}</td>
-
-                        <th style="width: 15%">Posisi Rak</th>
-                        <td>{{ $data->POSIRAK }}</td>
-                      </tr>
-                      <tr>
-                        <th style="width: 15%">Kota</th>
-                        <td>{{ $data->KOTA }}</td>
-
-                        <th style="width: 15%">Lantai</th>
-                        <td>{{ $data->LANTAI }}</td>
-                      </tr>
-                      <tr>
-                        <th style="width: 15%">Edisi</th>
-                        <td>
-                          @if ($data->EDISI == null || $data->EDISI == "")
-                              <a style="color: red">tidak tersedia</a>
-                              @else
-                              {{ $data->EDISI }}
-                          @endif
-                        </td>
-
-                        <th style="width: 15%">Konten Digital</th>
-                        <td>
-                          @if ($data->dokumen == null || $data->dokumen == "")
-                              <a style="color: red">tidak tersedia</a>
-                              @else
-                              <a class="btn btn-primary btn-sm" href="{{ asset('upload_file/'.$data->dokumen) }}" download="{{ $data->dokumen }}"><i class="fa fa-download"></i>&nbsp; Klik Untuk Download</a>
-                          @endif
-                        </td>
-                      </tr>
-                  </table>
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-hover">
+                        <tr style="background-color: #f0f0f0f0 !important">
+                          <th style="width: 15%;">Nomor</th>
+                          <th colspan="3">{{ $no++ }}</th>
+  
+                          
+                        </tr>
+                        <tr>
+                          <th style="width: 15%">Judul</th>
+                          <td>{{ $data->JUD }}</td>
+  
+                          <th style="width: 15%">Jumlah Eksemplar</th>
+                          <td>{{ $data->TOTKOLEK }}</td>
+                        </tr>
+                        <tr>
+                          <th style="width: 15%">Penulis</th>
+                          <td>{{ $data->PENULASLI }}</td>
+                          <th style="width: 15%">Ketersediaan</th>
+                          <td>{{ $data->TOTKOLEK }}</td>
+                        </tr>
+                        <tr>
+                          <th style="width: 15%">Penerbit</th>
+                          <td>{{ $data->PENERBIT }}</td>
+  
+                          <th style="width: 15%">Posisi Rak</th>
+                          <td>{{ $data->POSIRAK }}</td>
+                        </tr>
+                        <tr>
+                          <th style="width: 15%">Kota</th>
+                          <td>{{ $data->KOTA }}</td>
+  
+                          <th style="width: 15%">Lantai</th>
+                          <td>{{ $data->LANTAI }}</td>
+                        </tr>
+                        <tr>
+                          <th style="width: 15%">Edisi</th>
+                          <td>
+                            @if ($data->EDISI == null || $data->EDISI == "")
+                                <a style="color: red">tidak tersedia</a>
+                                @else
+                                {{ $data->EDISI }}
+                            @endif
+                          </td>
+  
+                          <th style="width: 15%">Konten Digital</th>
+                          <td>
+                            @if ($data->dokumen == null || $data->dokumen == "")
+                                <a style="color: red">tidak tersedia</a>
+                                @else
+                                <a class="btn btn-primary btn-sm" href="{{ asset('upload_file/'.$data->dokumen) }}" download="{{ $data->dokumen }}"><i class="fa fa-download"></i>&nbsp; Klik Untuk Download</a>
+                            @endif
+                          </td>
+                        </tr>
+                    </table>
+                    </div>
                   <hr>
                     @endforeach 
                   <!-- /.box-body -->
