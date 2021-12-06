@@ -28,74 +28,58 @@
                     <div class="row">
                         <form action="{{ route('operator.koleksi.post') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }} {{ method_field('POST') }}
-            
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Judul</label>
-                                <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror">
+                            <div class="col-md-12">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger"> <strong>Perhatian : </strong>Formulir Wajib Belum Terisi Semua</div>
+                                @endif
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">1. Kode Koleksi <a style="color: red;">*wajib diisi</a></label>
+                                <input type="text" name="KDKOLEK" value="{{ old('KDKOLEK') }}" class="form-control @error('KDKOLEK') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('KDKOLEK'))
+                                        <small class="form-text text-danger">{{ $errors->first('KDKOLEK') }}</small>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">2. Judul <a style="color: red;">*wajib diisi</a></label>
+                                <input type="text" name="judul" value="{{ old('judul') }}" class="form-control @error('judul') is-invalid @enderror">
                                 <div>
                                     @if ($errors->has('judul'))
                                         <small class="form-text text-danger">{{ $errors->first('judul') }}</small>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Jumlah Eksemplar</label>
-                                <input type="text" name="jumlah_eksemplar" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">3. Sub Judul</label>
+                                <input type="text" name="subjud" value="{{ old('subjud') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Penulis</label>
-                                <input type="text" name="penulis" class="form-control @error('penulis') is-invalid @enderror">
-                                <div>
-                                    @if ($errors->has('penulis'))
-                                        <small class="form-text text-danger">{{ $errors->first('penulis') }}</small>
-                                    @endif
-                                </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">4. Judul Asli</label>
+                                <input type="text" name="judul_asli" value="{{ old('judul_asli') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Ketersediaan</label>
-                                <input type="text" name="ketersediaan" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">5. No Kls</label>
+                                <input type="text" name="no_kls" value="{{ old('no_kls') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Penerbit</label>
-                                <input type="text" name="penerbit" class="form-control @error('penerbit') is-invalid @enderror">
-                                <div>
-                                    @if ($errors->has('penerbit'))
-                                        <small class="form-text text-danger">{{ $errors->first('penerbit') }}</small>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Posisi Rak</label>
-                                <input type="text" name="posisi_rak" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Kota</label>
-                                <input type="text" name="kota" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Lantai</label>
-                                <input type="text" name="lantai" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Edisi</label>
-                                <input type="text" name="edisi" class="form-control">
-                            </div>
-                          
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Judul Asli</label>
-                                <input type="text" name="judul_asli" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">ISBN</label>
-                                <input type="text" name="isbn" class="form-control @error('isbn') is-invalid @enderror">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">6. ISBN <a style="color: red;">*wajib diisi</a></label>
+                                <input type="text" name="isbn" value="{{ old('isbn') }}" class="form-control @error('isbn') is-invalid @enderror">
                                 <div>
                                     @if ($errors->has('isbn'))
                                         <small class="form-text text-danger">{{ $errors->first('isbn') }}</small>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label>Bahasa :</label>
+
+                            <div class="form-group col-md-4">
+                                <label>7. Bahasa :</label>
                                 <select name="bahasa" class="form-control  @error('bahasa') is-invalid @enderror">
                                     
                                     <option value="" selected disabled>-- pilih bahasa --</option>
@@ -104,68 +88,152 @@
                                     <option {{ old('bahasa') == "bhs.arab" ? 'selected' : '' }} value="bhs.arab">bahasa arab</option>
                                     <option {{ old('bahasa') == "bhs.jerman" ? 'selected' : '' }} value="bhs.jerman">bahasa jerman</option>
 
-
                                 </select>                                
                                 @error('bahasa')
                                     <small class="form-text text-danger">{{ $errors->first('bahasa') }}</small>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Terjemahan</label>
-                                <input type="text" name="terjemahan" class="form-control">
+                            
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">8. Penulis Asli</label>
+                                <input type="text" name="penulis" value="{{ old('penulis') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Penulis Pertama</label>
-                                <input type="text" name="penulis1" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">9. Penerjemah</label>
+                                <input type="text" name="terjemahan" value="{{ old('terjemahan') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Penulis Kedua</label>
-                                <input type="text" name="penulis2" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">10. Penulis Satu</label>
+                                <input type="text" name="penulis1" value="{{ old('penulis1') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Penulis Ketiga</label>
-                                <input type="text" name="penulis3" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">11. Penulis Kedua</label>
+                                <input type="text" name="penulis2" value="{{ old('penulis2') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Penulis Keempat</label>
-                                <input type="text" name="penulis4" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">12. Penulis Ketiga</label>
+                                <input type="text" name="penulis3" value="{{ old('penulis3') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Editor</label>
-                                <input type="text" name="editor" class="form-control">
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">13. Penulis Keempat</label>
+                                <input type="text" name="penulis4" value="{{ old('penulis4') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Tahun</label>
-                                <input type="text" name="tahun" class="form-control @error('tahun') is-invalid @enderror">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">14. Editor</label>
+                                <input type="text" name="editor" value="{{ old('editor') }}" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">15. Edisi Cetakan</label>
+                                <input type="text" name="edisi" value="{{ old('edisi') }}" class="form-control">
+                                <div>
+                                    @if ($errors->has('edisi'))
+                                        <small class="form-text text-danger">{{ $errors->first('edisi') }}</small>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">16. Nama Penerbit <a style="color: red;">*wajib diisi</a></label>
+                                <input type="text" name="penerbit" value="{{ old('penerbit') }}" class="form-control @error('penerbit') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('penerbit'))
+                                        <small class="form-text text-danger">{{ $errors->first('penerbit') }}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">17. Kota</label>
+                                <input type="text" name="kota" value="{{ old('kota') }}" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">18. Tahun <a style="color: red;">*wajib diisi</a></label>
+                                <input type="text" name="tahun" value="{{ old('tahun') }}" class="form-control @error('tahun') is-invalid @enderror">
                                 <div>
                                     @if ($errors->has('tahun'))
                                         <small class="form-text text-danger">{{ $errors->first('tahun') }}</small>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Seri</label>
-                                <input type="text" name="seri" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">19. subyek <a style="color: red;">*wajib diisi</a></label>
+                                <input type="text" name="subyek" value="{{ old('subyek') }}" class="form-control @error('subyek') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('subyek'))
+                                        <small class="form-text text-danger">{{ $errors->first('subyek') }}</small>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Tinggi</label>
-                                <input type="text" name="tinggi" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">20. Seri</label>
+                                <input type="text" name="seri" value="{{ old('seri') }}" class="form-control">
+                                <div>
+                                    @if ($errors->has('seri'))
+                                        <small class="form-text text-danger">{{ $errors->first('seri') }}</small>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Ilustrasi</label>
-                                <input type="text" name="ilustrasi" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">21. Tinggi</label>
+                                <input type="text" name="tinggi" value="{{ old('tinggi') }}" class="form-control @error('tinggi') is-invalid @enderror">
+                                <div>
+                                    @if ($errors->has('tinggi'))
+                                        <small class="form-text text-danger">{{ $errors->first('tinggi') }}</small>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Jumlah Halaman</label>
-                                <input type="text" name="jumlah_halaman" class="form-control">
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">22. Ilustrasi</label>
+                                <input type="text" name="ilustrasi" value="{{ old('ilustrasi') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Jumlah Indeks</label>
-                                <input type="text" name="jumlah_indeks" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">23. Bibliografi</label>
+                                <input type="text" name="bib" value="{{ old('bib') }}" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label>Kategori Buku :</label>
-                                <select name="kategori" class="form-control  @error('kategori') is-invalid @enderror">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">24. Jumlah Halaman</label>
+                                <input type="text" name="jumlah_halaman" value="{{ old('jumlah_halaman') }}" class="form-control">
+                                <div>
+                                    @if ($errors->has('jumlah_halaman'))
+                                        <small class="form-text text-danger">{{ $errors->first('jumlah_halaman') }}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">25. Jumlah Indeks</label>
+                                <input type="text" name="jumlah_indeks" value="{{ old('jumlah_indeks') }}" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>26. Asal Buku :</label>
+                                <select name="asalbuku" class="form-control">
+                                    <option value="" selected disabled>-- pilih asal buku --</option>
+                                    <option {{ old('asalbuku') == "pemberian" ? 'selected' : '' }} value="pemberian">Pemberian</option>
+                                    <option {{ old('asalbuku') == "hadiah" ? 'selected' : '' }} value="hadiah">Hadiah</option>
+                                </select>                                
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">27. Badan Korporasi</label>
+                                <input type="text" name="badan_korporasi" value="{{ old('badan_korporasi') }}" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>28. Kategori Buku :</label>
+                                <select name="kategori" class="form-control">
                                     <option value="" selected disabled>-- pilih kategori --</option>
                                     <option {{ old('kategori') == "buku" ? 'selected' : '' }} value="buku">buku</option>
                                     <option {{ old('kategori') == "CD" ? 'selected' : '' }} value="CD">CD</option>
@@ -174,96 +242,69 @@
                                     <option {{ old('kategori') == "kaset" ? 'selected' : '' }} value="kaset">kaset</option>
                                     <option {{ old('kategori') == "majalah" ? 'selected' : '' }} value="majalah">majalah</option>
                                     <option {{ old('kategori') == "artikel" ? 'selected' : '' }} value="artikel">artikel</option>
-
                                 </select>                                
-                                @error('kategori')
-                                    <small class="form-text text-danger">{{ $errors->first('kategori') }}</small>
-                                @enderror
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Jumlah Jilid</label>
-                                <input type="text" name="jumlah_jilid" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Sisa Koleksi</label>
-                                <input type="text" name="sisa_koleksi" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Badan Korporasi</label>
-                                <input type="text" name="badan_korporasi" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Catatan</label>
-                                <input type="text" name="catatan" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Resume</label>
-                                <input type="text" name="resume" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Kode User</label>
-                                <input type="text" name="kode_user" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Sub Judul</label>
-                                <input type="text" name="sub_judul" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Digit pen</label>
-                                <input type="text" name="digitpens" class="form-control">
-                            </div>
-                           
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Digit Judul</label>
-                                <input type="text" name="digitjud" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">BIB</label>
-                                <input type="text" name="bib" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Asal Buku :</label>
-                             
-                                <select name="asalbuku" class="form-control  @error('asalbuku') is-invalid @enderror">
-                                    
-                                    <option value="" selected disabled>-- pilih asal buku --</option>
-                                    <option {{ old('asalbuku') == "pemberian" ? 'selected' : '' }} value="pemberian">Pemberian</option>
-                                    <option {{ old('asalbuku') == "hadiah" ? 'selected' : '' }} value="hadiah">Hadiah</option>
 
-
-
-                                </select>                                
-                                @error('asalbuku')
-                                    <small class="form-text text-danger">{{ $errors->first('asalbuku') }}</small>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Jumlah Pinjam</label>
-                                <input type="text" name="jumlah_pinjam" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">subyek</label>
-                                <input type="text" name="subyek" class="form-control @error('subyek') is-invalid @enderror">
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">29. Jumlah Jilid</label>
+                                <input type="text" name="jumlah_jilid" value="{{ old('jumlah_jilid') }}" class="form-control">
                                 <div>
-                                    @if ($errors->has('subyek'))
-                                        <small class="form-text text-danger">{{ $errors->first('subyek') }}</small>
+                                    @if ($errors->has('jumlah_jilid'))
+                                        <small class="form-text text-danger">{{ $errors->first('jumlah_jilid') }}</small>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Nomor Kelas</label>
-                                <input type="text" name="pkdkls" class="form-control">
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">30. Jumlah Eksemplar</label>
+                                <input type="text" name="jumlah_eksemplar" value="{{ old('jumlah_eksemplar') }}" class="form-control">
+                                <div>
+                                    @if ($errors->has('jumlah_eksemplar'))
+                                        <small class="form-text text-danger">{{ $errors->first('jumlah_eksemplar') }}</small>
+                                    @endif
+                                </div>
                             </div>
-                    
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Konten Digital</label>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">31. Tanggal Input Data</label>
+                                <input type="date" name="TGLINPUT" value="<?php print strftime('%F'); ?>" readonly class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">32. Catatan Umum</label>
+                                <input type="text" name="catatan" value="{{ old('catatan') }}" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">33. Resume</label>
+                                <input type="text" name="resume" value="{{ old('resume') }}" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">34. Posisi Rak</label>
+                                <input type="text" name="posisi_rak" value="{{ old('posisi_rak') }}" class="form-control">
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">35. Lantai</label>
+                                <input type="text" name="lantai" value="{{ old('lantai') }}" class="form-control">
+                                <div>
+                                    @if ($errors->has('lantai'))
+                                        <small class="form-text text-danger">{{ $errors->first('lantai') }}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">36. Kode Operator</label>
+                                <input type="text" name="kode_user" value="{{ Auth::user()->id }}" readonly class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">37. Konten Digital</label>
                                 <input type="file" name="dokumen" class="form-control">
                             </div>
-                            <div class="col-md-12">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger"> <strong>Perhatian : </strong> Silahkan isi semua form lalu klik simpan </div>
-                                @endif
-                            </div>
+                            
                             <div class="col-md-12 text-center">
                                 <button type="reset" name="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i>&nbsp; Ulangi</button>
                                 <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>

@@ -30,6 +30,8 @@ class ManajemenKoleksiController extends Controller
         $messages = [
             'required' => ':attribute harus diisi',
             'numeric' => ':attribute harus angka',
+            'unique'    =>  ':attribute sudah digunakan',
+            'max'    =>  ':attribute tidak boleh lebih dari :max',
         ];
         $attributes = [
             'judul'               =>  'Judul',
@@ -38,26 +40,43 @@ class ManajemenKoleksiController extends Controller
             'penerbit'      =>  'penerbit',
             'isbn'          =>  'isbn',
             'tahun'        =>  'tahun',
+            'KDKOLEK'       =>  'Kode Koleksi',
+            'edisi' =>  'Edisi',
+            'lantai' =>  'Lantai',
+            'seri' =>  'Seri',
+            'jumlah_jilid' =>  'Jumlah Jilid',
+            'BIB' =>  'Bibliografi',
         ];
         $this->validate($request, [
             'judul'               =>  'required',
             'penulis'             =>  'required',
             'penerbit'      =>  'required',
-            'tahun'         =>  'required',
+            'tahun'         =>  'required|numeric',
             'subyek'         =>  'required',
             'isbn'         =>  'required',
+            'KDKOLEK'       =>  'required|numeric|unique:pkoleksi,KDKOLEK',
+            'jumlah_eksemplar'  =>  'numeric',
+            'jumlah_halaman'  =>  'numeric',
+            'lantai'  =>  'numeric|max:99',
+            'jumlah_jilid'  =>  'numeric|max:99',
+            'edisi'  =>  'numeric|max:99',
+            'tinggi'  =>  'numeric',
+            'seri' =>  'numeric|max:99',
+            'BIB' =>  'max:8',
+            'Tahun' =>  'max:9999',
         ],$messages,$attributes);
 
         $model['dokumen'] = null;
         $model = $request->all();
-        $kdkolek = Subyek::max('KDKOLEK');
 
         if ($request->hasFile('dokumen')){
             $model['dokumen'] = Str::slug($model['judul'], '-').'.'.$request->dokumen->getClientOriginalExtension();
             $request->dokumen->move(public_path('/upload_file/'), $model['dokumen']);
             $subyek = new Subyek();
-            $subyek->KDKOLEK = $kdkolek+1;
+            $subyek->KDKOLEK = $request->KDKOLEK;
+            $subyek->PKDKLS = $request->no_kls;
             $subyek->JUD = $request->judul;
+            $subyek->SUBJUD = $request->SUBJUD;
             $subyek->PENULASLI = $request->penulis;
             $subyek->PENERBIT = $request->penerbit;
             $subyek->KOTA = $request->kota;
@@ -101,7 +120,8 @@ class ManajemenKoleksiController extends Controller
         }
         else{
             $subyek = new Subyek();
-            $subyek->KDKOLEK = $kdkolek+1;
+            $subyek->KDKOLEK = $request->KDKOLEK;
+            $subyek->PKDKLS = $request->no_kls;
             $subyek->JUD = $request->judul;
             $subyek->PENULASLI = $request->penulis;
             $subyek->PENERBIT = $request->penerbit;
@@ -139,6 +159,7 @@ class ManajemenKoleksiController extends Controller
             $subyek->DIGITJUD = $request->digitjud;
             $subyek->BIB = $request->bib;
             $subyek->PKDKLS = $request->pkdkls;
+            $subyek->SUBJUD = $request->SUBJUD;
             $subyek->SUBYEK = $request->subyek;
             $subyek->TGLINPUT = date('Y-m-d H:i:s');
             $subyek->save();
