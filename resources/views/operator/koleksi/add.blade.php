@@ -30,7 +30,7 @@
                             {{ csrf_field() }} {{ method_field('POST') }}
                             <div class="col-md-12">
                                 @if ($errors->any())
-                                    <div class="alert alert-danger"> <strong>Perhatian : </strong>Formulir Wajib Belum Terisi Semua</div>
+                                    <div class="alert alert-danger"> <strong>Perhatian : </strong>Terjadi kesalahan, harap mengisi dengan teliti</div>
                                 @endif
                             </div>
 
