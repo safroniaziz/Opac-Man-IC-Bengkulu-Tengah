@@ -304,6 +304,7 @@
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">37. Konten Digital</label>
                                 <input type="file" name="dokumen" class="form-control">
+                                <small class="form-text text-danger">File Lama : {{ $koleksi->dokumen }}</small>
                             </div>
                             <div class="col-md-12">
                                 @if ($errors->any())

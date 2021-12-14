@@ -173,36 +173,67 @@ class ManajemenKoleksiController extends Controller
     }
 
     public function update(Request $request,$KDKOLEK){
+        // return $request->all();
+        $messages = [
+            'required' => ':attribute harus diisi',
+            'numeric' => ':attribute harus angka',
+            'unique'    =>  ':attribute sudah digunakan',
+            'max'    =>  ':attribute tidak boleh lebih dari :max',
+        ];
+        $attributes = [
+            'judul'               =>  'Judul',
+            'subyek'               =>  'Subyek',
+            'penulis'             =>  'penulis',
+            'penerbit'      =>  'penerbit',
+            'isbn'          =>  'isbn',
+            'tahun'        =>  'tahun',
+            'KDKOLEK'       =>  'Kode Koleksi',
+            'edisi' =>  'Edisi',
+            'lantai' =>  'Lantai',
+            'seri' =>  'Seri',
+            'jumlah_jilid' =>  'Jumlah Jilid',
+            'BIB' =>  'Bibliografi',
+        ];
         $this->validate($request, [
-         
-        ]);
+            'judul'               =>  'required',
+            'penulis'             =>  'required',
+            'penerbit'      =>  'required',
+            'tahun'         =>  'required|numeric',
+            'subyek'         =>  'required',
+            'isbn'         =>  'required',
+            'KDKOLEK'       =>  'required|numeric',
+            'jumlah_eksemplar'  =>  'numeric',
+            'jumlah_halaman'  =>  'numeric',
+            'lantai'  =>  'numeric|max:99',
+            'jumlah_jilid'  =>  'numeric|max:99',
+            'edisi'  =>  'numeric|max:99',
+            'tinggi'  =>  'numeric',
+            'seri' =>  'numeric|max:99',
+            'BIB' =>  'max:8',
+            'Tahun' =>  'max:9999',
+        ],$messages,$attributes);
        
-       
-      
-   
         $model = $request->all();
         $model['dokumen'] = null;
-        $slug_user = Str::slug(Auth::user()->name);
         $dokumen = Subyek::where('KDKOLEK',$KDKOLEK)->first();
-       
 
         if ($request->hasFile('dokumen')){
             if (!$dokumen->dokumen == NULL){
                 unlink(public_path('/upload_file/'.'/'.$dokumen->dokumen));
             }
-            $model['dokumen'] = '-'.Auth::user()->name.'-'.date('now').'.'.$request->dokumen->getClientOriginalExtension();
+            $model['dokumen'] = Str::slug($model['judul'], '-').'.'.$request->dokumen->getClientOriginalExtension();
             $request->dokumen->move(public_path('/upload_file/'), $model['dokumen']);
-           
             
             Subyek::where('KDKOLEK',$KDKOLEK)->update([
                 'KDKOLEK' => $request->KDKOLEK,
                 'PKDKLS' => $request->PKDKLS,
                 'JUD' => $request->judul,
+                'SUBJUD' => $request->SUBJUD,
                 'PENULASLI' => $request->penulis,
                 'PENERBIT' => $request->penerbit,
                 'KOTA' => $request->kota,
                 'EDISI' => $request->edisi,
-                'TOTKOLEK' => $request->edisi,
+                'TOTKOLEK' => $request->jumlah_eksemplar,
                 'POSIRAK' => $request->posisi_rak,
                 'LANTAI' => $request->lantai,
                 'JUDASLI' => $request->judul_asli,
@@ -220,7 +251,6 @@ class ManajemenKoleksiController extends Controller
                 'ILUSTRASI' => $request->ilustrasi,
                 'JLHAL' => $request->jumlah_halaman,
                 'JLINDEKS' => $request->jumlah_indeks,
-                'ASALBUKU' => $request->asalbuku,
                 'KATEGORI' => $request->kategori,
                 'JLHJILID' => $request->jumlah_jilid,
                 'JLHPINJAM' => $request->jumlah_pinjam,
@@ -232,66 +262,66 @@ class ManajemenKoleksiController extends Controller
                 'DIGITPENLS' => $request->digitpens,
                 'DIGITJUD' => $request->digitjud,
                 'BIB' => $request->bib,
-                'SUBJUD' => $request->SUBJUD,
+                'ASALBUKU' => $request->asalbuku,
                 'SUBYEK' => $request->subyek,
+                'dokumen' => $model['dokumen'],
                 'TGLINPUT' => date('Y-m-d H:i:s'),
-           'dokumen' => $model['dokumen'],
-            
             ]);
-
         }
         else{
             Subyek::where('KDKOLEK',$KDKOLEK)->update([
-            'KDKOLEK' => $request->KDKOLEK,
-            'PKDKLS' => $request->PKDKLS,
-            'JUD' => $request->judul,
-            'PENULASLI' => $request->penulis,
-            'PENERBIT' => $request->penerbit,
-            'KOTA' => $request->kota,
-            'EDISI' => $request->edisi,
-            'TOTKOLEK' => $request->edisi,
-            'POSIRAK' => $request->posisi_rak,
-            'LANTAI' => $request->lantai,
-            'JUDASLI' => $request->judul_asli,
-            'ISBN' => $request->isbn,
-            'BHS' => $request->bahasa,
-            'TERJEMAH' => $request->terjemahan,
-            'PENULIS1' => $request->penulis1,
-            'PENULIS2' => $request->penulis2,
-            'PENULIS3' => $request->penulis3,
-            'PENULIS4' => $request->penulis4,
-            'EDITOR' => $request->editor,
-            'TAHUN' => $request->tahun,
-            'SERI' => $request->seri,
-            'TINGGI' => $request->tinggi,
-            'ILUSTRASI' => $request->ilustrasi,
-            'JLHAL' => $request->jumlah_halaman,
-            'JLINDEKS' => $request->jumlah_indeks,
-            'ASALBUKU' => $request->asalbuku,
-            'KATEGORI' => $request->kategori,
-            'JLHJILID' => $request->jumlah_jilid,
-            'JLHPINJAM' => $request->jumlah_pinjam,
-            'SISAKOLEK' => $request->sisa_koleksi,
-            'BADANKORP' => $request->badan_korporasi,
-            'CATATAN' => $request->catatan,
-            'RESUME' => $request->resume,
-            'KDUSER' => $request->kode_user,
-            'DIGITPENLS' => $request->digitpens,
-            'DIGITJUD' => $request->digitjud,
-            'BIB' => $request->bib,
-            'SUBJUD' => $request->SUBJUD,
-            'SUBYEK' => $request->subyek,
-            'TGLINPUT' => date('Y-m-d H:i:s'),
+               'KDKOLEK' => $request->KDKOLEK,
+               'PKDKLS' => $request->PKDKLS,
+               'JUD' => $request->judul,
+               'PENULASLI' => $request->penulis,
+               'PENERBIT' => $request->penerbit,
+               'KOTA' => $request->kota,
+               'EDISI' => $request->edisi,
+               'TOTKOLEK' => $request->edisi,
+               'POSIRAK' => $request->posisi_rak,
+               'LANTAI' => $request->lantai,
+               'JUDASLI' => $request->judul_asli,
+               'ISBN' => $request->isbn,
+               'BHS' => $request->bahasa,
+               'TERJEMAH' => $request->terjemahan,
+               'PENULIS1' => $request->penulis1,
+               'PENULIS2' => $request->penulis2,
+               'PENULIS3' => $request->penulis3,
+               'PENULIS4' => $request->penulis4,
+               'EDITOR' => $request->editor,
+               'TAHUN' => $request->tahun,
+               'SERI' => $request->seri,
+               'TINGGI' => $request->tinggi,
+               'ILUSTRASI' => $request->ilustrasi,
+               'JLHAL' => $request->jumlah_halaman,
+               'JLINDEKS' => $request->jumlah_indeks,
+               'ASALBUKU' => $request->asalbuku,
+               'KATEGORI' => $request->kategori,
+               'JLHJILID' => $request->jumlah_jilid,
+               'JLHPINJAM' => $request->jumlah_pinjam,
+               'SISAKOLEK' => $request->sisa_koleksi,
+               'BADANKORP' => $request->badan_korporasi,
+               'CATATAN' => $request->catatan,
+               'RESUME' => $request->resume,
+               'KDUSER' => $request->kode_user,
+               'DIGITPENLS' => $request->digitpens,
+               'DIGITJUD' => $request->digitjud,
+               'BIB' => $request->bib,
+               'SUBJUD' => $request->SUBJUD,
+               'SUBYEK' => $request->subyek,
+               'TGLINPUT' => date('Y-m-d H:i:s'),
             ]);
 
         }
-        return redirect()->route('operator.koleksi')->with(['success'   =>  'Data Koleksi Baru Berhasil Ditambahkan !!']);
+        return redirect()->route('operator.koleksi')->with(['success'   =>  'Data Koleksi Baru Berhasil diubah !!']);
     }
 
     public function delete($KDKOLEK){
+        $dokumen = Subyek::select('dokumen')->where('KDKOLEK',$KDKOLEK)->first();
+        if (!$dokumen->dokumen == NULL){
+            unlink(public_path('/upload_file/'.'/'.$dokumen->dokumen));
+        }
         Subyek::where('KDKOLEK',$KDKOLEK)->delete();
         return redirect()->route('operator.koleksi')->with(['success'   =>  'Data Koleksi Berhasil Dihapus !!']);
     }
-
- 
 }
