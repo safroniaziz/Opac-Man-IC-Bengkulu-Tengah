@@ -55,7 +55,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">3. Sub Judul</label>
-                                <input type="text" name="subjud" value="{{ old('subjud') }}" class="form-control">
+                                <input type="text" name="SUBJUD" value="{{ old('subjud') }}" class="form-control">
                             </div>
 
                             <div class="form-group col-md-4">
@@ -64,8 +64,8 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">5. No Kls</label>
-                                <input type="text" name="no_kls" value="{{ old('no_kls') }}" class="form-control">
+                                <label for="exampleInputEmail1">5. Nomor Kls</label>
+                                <input type="text" name="PKDKLS" value="{{ old('PKDKLS') }}" class="form-control">
                             </div>
 
                             <div class="form-group col-md-4">
@@ -93,7 +93,7 @@
                                     <small class="form-text text-danger">{{ $errors->first('bahasa') }}</small>
                                 @enderror
                             </div>
-                            
+
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">8. Penulis Asli</label>
                                 <input type="text" name="penulis" value="{{ old('penulis') }}" class="form-control">

@@ -85,7 +85,7 @@
 
                                     </td>
                                     <td>
-                                        {{-- <a href="{{ route('operator.koleksi.edit',[$koleksi->KDKOLEK]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;Ubah</a></td> --}}
+                                        <a href="{{ route('operator.koleksi.edit',[$koleksi->KDKOLEK]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;Ubah</a>
                                     {{-- <a onclick="hapusBuku({{ $koleksi->id }})" class="btn btn-danger btn-sm" style="color:white;cursor:pointer;"><i class="fa fa-trash"></i></a> --}}
                                     <form action="{{ route('operator.koleksi.delete',[$koleksi->KDKOLEK]) }}" method="POST">
                                         {{ csrf_field() }} {{ method_field("DELETE") }}
