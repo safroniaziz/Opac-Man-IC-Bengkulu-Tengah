@@ -25,20 +25,20 @@
                         <strong>Perhatian:</strong> <i>{{ $message }}</i>
                     </div>
                     @else
-                    <h6>Login</h6>
-                    <p style="text-align:center; margin-bottom:20px;">Online Public Access Catalog (OPAC)</p>
+                    <h6>Form Login</h6>
+                    <p style="text-align:center; margin-bottom:20px;">Online Public Access Catalog (OPAC) MAN IC Bengkulu Tengah</p>
                 @endif
                 <form method="post" action="{{ route('login') }}">
                     @csrf
                     <p>Email</p>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="email" type="email" class=" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     <p>Password</p>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -46,7 +46,6 @@
                     @enderror
 
                     <button type="submit" name="submit" style="margin-bottom:10px;r"><i class="fa fa-sign-in"></i>&nbsp; Login</button>
-
                 </form>
             </div>
         </div>

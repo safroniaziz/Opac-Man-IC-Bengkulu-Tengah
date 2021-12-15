@@ -30,8 +30,10 @@
               <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">Messages</span>
-                <span class="info-box-number">1,410</span>
+                <span class="info-box-text">Jumlah Buku</span>
+                <span class="info-box-number">
+                    {{ $jumlah_buku }}
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -43,8 +45,8 @@
               <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">Bookmarks</span>
-                <span class="info-box-number">410</span>
+                <span class="info-box-text">Jumlah Buku Fisik</span>
+                <span class="info-box-number">{{ $buku_fisik }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -56,8 +58,8 @@
               <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">Uploads</span>
-                <span class="info-box-number">13,648</span>
+                <span class="info-box-text">Jumlah Buku Digital</span>
+                <span class="info-box-number">{{ $buku_digital }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -69,8 +71,8 @@
               <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">93,139</span>
+                <span class="info-box-text">Jumlah Input Hari Ini</span>
+                <span class="info-box-number">{{ $buku_hari_ini }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>

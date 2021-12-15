@@ -18,6 +18,7 @@ class OperatorDashboardController extends Controller
         $perTahun = Absensi::select(DB::raw('count(NOURT) as jumlah'),DB::raw('year(TGL) as tahun'))->groupBy(DB::raw('year(TGL)'))->get();
         $perJenisKelamin = Absensi::join('panggota','panggota.NOANG','pabsen.NOANG')->select('JENKEL',DB::raw('count(NOURT) as jumlah'))->groupBy('JENKEL')->get();
         $subyek = Subyek::select('TAHUN',DB::raw('count(KDKOLEK) as jumlah'))->groupBy('TAHUN')->get();
+        
         return view('operator/dashboard',compact('subyek','perTahun','perJenisKelamin'));
     }
 }

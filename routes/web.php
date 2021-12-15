@@ -9,6 +9,7 @@ use App\Models\Subyek;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $semuaBuku = count(DB::table('pkoleksi')->get());
     $perTahun = Absensi::select(DB::raw('count(NOURT) as jumlah'),DB::raw('year(TGL) as tahun'))->groupBy(DB::raw('year(TGL)'))->get();
     $perJenisKelamin = Absensi::join('panggota','panggota.NOANG','pabsen.NOANG')->select('JENKEL',DB::raw('count(NOURT) as jumlah'))->groupBy('JENKEL')->get();
     $subyek = Subyek::select('TAHUN',DB::raw('count(KDKOLEK) as jumlah'))->groupBy('TAHUN')->get();
-    return view('welcome2',compact('subyek','perTahun','perJenisKelamin','semuaBuku'));
+    $jumlah_buku = count(Subyek::all());
+    $buku_digital = count(Subyek::where('dokumen','!=',null)->get());
+    $buku_fisik = count(Subyek::where('dokumen',null)->get());
+    $dt = Carbon::now();
+    $today = $dt->toDateString();
+    $buku_hari_ini = count(Subyek::where('TGLINPUT',$today)->get());
+    return view('welcome2',compact('subyek','perTahun','perJenisKelamin','jumlah_buku','buku_digital','buku_fisik','buku_hari_ini'));
 })->name('welcome2');
 
 Route::get('/welcome', function () {
