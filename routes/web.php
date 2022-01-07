@@ -31,7 +31,7 @@ Route::get('/', function () {
     $buku_fisik = count(Subyek::where('dokumen',null)->get());
     $dt = Carbon::now();
     $today = $dt->toDateString();
-    $buku_hari_ini = count(Subyek::where('TGLINPUT',$today)->get());
+    $buku_hari_ini = count(Subyek::whereDate('TGLINPUT',$today)->get());
     return view('welcome2',compact('subyek','perTahun','perJenisKelamin','jumlah_buku','buku_digital','buku_fisik','buku_hari_ini'));
 })->name('welcome2');
 
